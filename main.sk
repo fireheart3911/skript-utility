@@ -1,0 +1,101 @@
+options:
+    prefix: "&2[FUT]"
+
+
+
+
+
+
+
+command /heal <player> [<number>]:
+    permission: fireutil.heal
+    trigger:
+        if arg 2 is not set:
+            set {_amount} to 20
+        else:
+            set {_amount} to arg 2
+        heal arg 1 by {_amount}
+        send "{@prefix} &aHealed &2%arg 1% &afor &2%{_amount}% &ahealth." to player
+
+command /feed <player> [<number>]:
+    permission: fireutil.feed
+    trigger:
+        if arg 2 is not set:
+            set {_amount} to 20
+        else:
+            set {_amount} to arg 2
+        feed arg 1 by {_amount}
+        send "{@prefix} &aFed &2%arg 1% &afor &2%{_amount}% &ahunger." to player
+
+command /stun <player> <number>:
+    permission: fireutil.stun
+    trigger:
+        apply slowness 120 without particles to arg 1 for arg 2 seconds replacing the existing effect
+        apply weakness 120 without particles to arg 1 for arg 2 seconds replacing the existing effect
+        apply mining fatigue 120 without particles to arg 1 for arg 2 seconds replacing the existing effect
+        apply jump boost 128 without particles to arg 1 for arg 2 seconds replacing the existing effect
+        apply levitation 128 without particles to arg 1 for arg 2 seconds replacing the existing effect
+        send "{@prefix} &aStunned &2%arg 1% &afor &2%arg 2% &aseconds." to player
+
+command /broadcast <text>:
+    permission: fireutil.broadcast
+    trigger:
+        broadcast "%formatted arg 1%"
+
+command /send <player> <text>:
+    permission: fireutil.send
+    trigger:
+        send "%formatted arg 2%" to arg 1
+
+command /yeet <player>:
+    permission fireutil.yeet
+    trigger:
+        execute console command "/execute at %arg 1% run tp %arg 1% ~ ~1000 ~"
+        apply levitation 120 without particles to arg 1 for 60 seconds replacing the existing effect
+
+command /enderchest:
+    permission: fireutil.enderchest
+    trigger:
+        open enderchest of player to player
+
+command /crafting:
+    permission: fireutil.crafting
+    trigger:
+        open crafting table inventory to player
+
+command /invsee <offline player>:
+    permission: fireutil.invsee
+    trigger:
+       if player has permission "fireutil.invedit":
+           open inventory of arg 1 to player
+       else:
+           show inventory of arg 1 to player
+
+command /endersee <offline player>:
+    permission: fireutil.endersee
+    trigger:
+       if player has permission "fireutil.invedit":
+           open enderchest of arg 1 to player
+       else:
+           show enderchest of arg 1 to player
+
+command /rename <text>:
+    permission: fireutil.rename
+    trigger:
+        set name of player's tool to formatted arg 1
+
+command /repair:
+    aliases: /fix
+    permission: fireutil.repair
+    trigger:
+        repair player's tool
+        repair player's helmet
+        repair player's chestplate
+        repair player's leggings
+        repair player's boots
+
+        
+
+
+
+
