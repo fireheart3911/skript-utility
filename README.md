@@ -23,5 +23,8 @@ A couple of useful commands &amp; functions for skript
  /endersee `<player>` | fireutil.endersee<br>fireutil.enderedit | Opens another player's enderchest.
  /rename `<text>` | fireutil.rename | Renames the held item. Supports Legacy Color Codes and Hex Codes in the format `<#ff0000>`.
  /stack `[number]` | fireutil.stack | Sets the item count of the held item. Defaults to 64 items.
+ /eval `<string>` | fireutil.eval | *Parses input as skript effect.
+ 
+ * Requires SkBee
  
  More coming soon:tm:
