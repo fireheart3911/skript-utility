@@ -25,6 +25,6 @@ A couple of useful commands &amp; functions for skript
  /stack `[number]` | fireutil.stack | Sets the item count of the held item. Defaults to 64 items.
  /eval `<string>` | fireutil.eval | *Parses input as skript effect.
  
- * Requires SkBee
+ \* Requires SkBee
  
  More coming soon:tm:
