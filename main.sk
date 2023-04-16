@@ -1,5 +1,5 @@
 options:
-    prefix: "&2[FUT]"
+    prefix: &2[FUTIL]
 
 
 
@@ -27,28 +27,29 @@ command /feed <player> [<number>]:
         feed arg 1 by {_amount}
         send "{@prefix} &aFed &2%arg 1% &afor &2%{_amount}% &ahunger." to player
 
-command /stun <player> <number>:
+command /stun <entity> <number>:
     permission: fireutil.stun
     trigger:
-        apply slowness 120 without particles to arg 1 for arg 2 seconds replacing the existing effect
-        apply weakness 120 without particles to arg 1 for arg 2 seconds replacing the existing effect
-        apply mining fatigue 120 without particles to arg 1 for arg 2 seconds replacing the existing effect
-        apply jump boost 128 without particles to arg 1 for arg 2 seconds replacing the existing effect
-        apply levitation 128 without particles to arg 1 for arg 2 seconds replacing the existing effect
+        set {_seconds} to "%arg 2% seconds" parsed as timespan
+        apply slowness 120 without particles to arg 1 for {_seconds} replacing the existing effect
+        apply weakness 120 without particles to arg 1 for {_seconds} replacing the existing effect
+        apply mining fatigue 120 without particles to arg 1 for {_seconds} replacing the existing effect
+        apply jump boost 129 without particles to arg 1 for {_seconds} replacing the existing effect
+        apply levitation 129 without particles to arg 1 for {_seconds} replacing the existing effect
         send "{@prefix} &aStunned &2%arg 1% &afor &2%arg 2% &aseconds." to player
 
 command /broadcast <text>:
     permission: fireutil.broadcast
     trigger:
-        broadcast "%formatted arg 1%"
+        broadcast formatted arg 1
 
 command /send <player> <text>:
     permission: fireutil.send
     trigger:
-        send "%formatted arg 2%" to arg 1
+        send formatted arg 2 to arg 1
 
 command /yeet <player>:
-    permission fireutil.yeet
+    permission: fireutil.yeet
     trigger:
         execute console command "/execute at %arg 1% run tp %arg 1% ~ ~1000 ~"
         apply levitation 120 without particles to arg 1 for 60 seconds replacing the existing effect
@@ -66,18 +67,18 @@ command /crafting:
 command /invsee <offline player>:
     permission: fireutil.invsee
     trigger:
-       if player has permission "fireutil.invedit":
-           open inventory of arg 1 to player
-       else:
-           show inventory of arg 1 to player
+        if player has permission "fireutil.invedit":
+            open inventory of arg 1 to player
+        else:
+            show inventory of arg 1 to player
 
 command /endersee <offline player>:
     permission: fireutil.endersee
     trigger:
-       if player has permission "fireutil.invedit":
-           open enderchest of arg 1 to player
-       else:
-           show enderchest of arg 1 to player
+        if player has permission "fireutil.invedit":
+            open enderchest of arg 1 to player
+        else:
+            show enderchest of arg 1 to player
 
 command /rename <text>:
     permission: fireutil.rename
@@ -93,9 +94,3 @@ command /repair:
         repair player's chestplate
         repair player's leggings
         repair player's boots
-
-        
-
-
-
-
